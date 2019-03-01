@@ -20,8 +20,10 @@ On OSX
 ```bash
 $ brew install maven
 
-$ brew install openjdk8
+$ brew cask install java
 ```
+See also:
+[https://discourse.brew.sh/t/how-to-install-openjdk-with-brew/712/5]
 
 Clone the Git repository
 
