@@ -32,8 +32,9 @@ public class CafeServiceImpl implements CafeService {
      * @param numberOfCups      int
      * @param beverageType      BeverageType
      * @return                  BigDecimal      Price of the order
-     * throws                   UnavailableProductException     if the order would exceed inventory levels
+     * @throws                  UnavailableProductException     if the order would exceed inventory levels
      */
+    @Override
     public BigDecimal makeBeverage(int numberOfCups, Enum<BeverageType> beverageType)
     {
 

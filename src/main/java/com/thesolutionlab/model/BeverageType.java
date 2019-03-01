@@ -28,4 +28,5 @@ public enum BeverageType {
                     (sb, bev) -> (sb.append(bev.name()+":")), StringBuffer::append)
             .toString();
     }
+
 }

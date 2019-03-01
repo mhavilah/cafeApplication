@@ -14,11 +14,12 @@
 
     <organization>
         <name>The Solution Lab</name>
-        <url>http://maven.apache.org</url>
+        <url>https://github.com/mhavilah/cafeApplication.git</url>
     </organization>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.url>https://github.com/mhavilah/cafeApplication.git</project.url>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -87,22 +88,27 @@
     <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <version>2.2</version>
-        <executions>
-            <execution>
-                <goals>
-                    <goal>jar</goal>
-                </goals>
-                <id>jar</id>
-            </execution>
-        </executions>
+        <version>3.1.1</version>
+        <!-- Following configs are from Maven archive plugin since jar plugin 3.0.x -->
         <configuration>
             <archive>
-                <manifestFile>src/main/resources/Manifest.txt</manifestFile>
+                <addMavenDescriptor>false</addMavenDescriptor>
+                <compress>true</compress>
+                <!-- manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile -->
                 <manifest>
                     <addClasspath>true</addClasspath>
+                    <!-- addDefaultEntries>true</addDefaultEntries -->
+                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                    <!-- addBuildEnvironmentEntries>true</addBuildEnvironmentEntries -->
                     <mainClass>com.thesolutionlab.CafeApp</mainClass>
+                    <!-- manifestVersion>1.0</manifestVersion -->
                 </manifest>
+                <manifestEntries>
+                    <mode>development</mode>
+                    <url>${project.url}</url>
+                    <author>Matt Havilah</author>
+                    <email>mhavilah@gmail.com</email>
+                </manifestEntries>
             </archive>
         </configuration>
     </plugin>

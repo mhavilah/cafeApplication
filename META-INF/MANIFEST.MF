@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Implementation-Title: cafedemo
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: mhavilah
+author: Matt Havilah
+Implementation-Vendor-Id: com.thesolutionlab
+url: https://github.com/mhavilah/cafeApplication.git
+Implementation-Vendor: The Solution Lab
+Main-Class: com.thesolutionlab.CafeApp
+mode: development
+Created-By: Apache Maven 3.6.0
+Build-Jdk: 1.8.0_202-ea
+email: mhavilah@gmail.com
+

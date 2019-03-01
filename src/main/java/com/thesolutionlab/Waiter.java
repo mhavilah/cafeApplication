@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 
 /**
  * A Waiter who takes orders and uses the CafeService.
+ *
+ * This client of CafeService will be tested with both a "production" CafeServiceImpl
+ * and a Mock CafeServiceImpl.
  */
 public class Waiter {
 
