@@ -36,40 +36,35 @@ Then, invoking Maven from the project folder (containing the pom.xml):
 
 ```bash
  $ cd cafeApplication
- $ mvn clean test package [INFO] Scanning for projects... 
+ $ mvn clean test package 
+[INFO] Scanning for projects... 
 [INFO]
 [INFO] -----------------< com.thesolutionlab:CafeApplication\>----------------- 
 [INFO] Building cafedemo 1.0-SNAPSHOT 
 [INFO]
 --------------------------------[ jar ]---------------------------------
 [INFO] 
-[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @
-CafeApplication --- 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ CafeApplication --- 
 [INFO] Deleting
 /Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/target
 [INFO] 
-[INFO] --- maven-resources-plugin:2.6:resources
-(default-resources) @ CafeApplication --- 
-[INFO] Using 'UTF-8' encoding
-to copy filtered resources. 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ CafeApplication --- 
+[INFO] Using 'UTF-8' encoding to copy filtered resources. 
 [INFO] Copying 0 resource 
 [INFO] 
 [INFO] ---
 maven-compiler-plugin:3.8.0:compile (default-compile) @ CafeApplication
 --- 
 [INFO] Changes detected - recompiling the module! 
-[INFO] Compiling 8
-source files to
+[INFO] Compiling 8 source files to
 /Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/target/classes
 [INFO] 
-[INFO] --- maven-resources-plugin:2.6:testResources
-(default-testCompile) @ CafeApplication --- 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testCompile) @ CafeApplication --- 
 [INFO] Changes detected - recompiling the module! 
 [INFO] Compiling 3 source files to
-/Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/target/test-classes
+/Users/mhavilah/projects/experiments/CafeApplication/target/test-classes
 [INFO] 
-[INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @
-CafeApplication --- 
+[INFO] --- maven-surefire-plugin:2.22.1:test (default-test) @ CafeApplication --- 
 [INFO] 
 [INFO]
 ------------------------------------------------------- 
@@ -132,7 +127,7 @@ CLI Output:
 [INFO] 
 [INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ CafeApplication ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/src/test/resources
+[INFO] skip non existing resourceDirectory /Users/mhavilah/projects/experiments/CafeApplication/src/test/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.8.0:testCompile (default-testCompile) @ CafeApplication ---
 [INFO] Nothing to compile - all classes are up to date
@@ -141,11 +136,11 @@ CLI Output:
 [INFO] Skipping execution of surefire because it has already been run for this configuration
 [INFO] 
 [INFO] --- maven-jar-plugin:3.1.1:jar (default-jar) @ CafeApplication ---
-[INFO] Building jar: /Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/target/CafeApplication-1.0-SNAPSHOT.jar
+[INFO] Building jar: /Users/mhavilah/projects/experiments/CafeApplication/target/CafeApplication-1.0-SNAPSHOT.jar
 [INFO] 
 [INFO] --- maven-shade-plugin:1.4:shade (default) @ CafeApplication ---
 [INFO] Replacing original artifact with shaded artifact.
-[INFO] Replacing /Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/target/CafeApplication-1.0-SNAPSHOT.jar with /Users/mhavilah/projects/sydneytrains/experiments/CafeApplication/target/CafeApplication-1.0-SNAPSHOT-shaded.jar
+[INFO] Replacing /Users/mhavilah/projects/experiments/CafeApplication/target/CafeApplication-1.0-SNAPSHOT.jar with /Users/mhavilah/projects/experiments/CafeApplication/target/CafeApplication-1.0-SNAPSHOT-shaded.jar
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
