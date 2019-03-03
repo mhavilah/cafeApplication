@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 /**
  * A Waiter who takes orders and uses the CafeService.
  *
- * This client of CafeService will be tested with both a "production" CafeServiceImpl
+ * This client of CafeService will be tested with both a "production" <code>CafeServiceImpl</code>
  * and a Mock CafeServiceImpl.
  */
 public class Waiter {
@@ -19,6 +19,15 @@ public class Waiter {
 
     public Waiter(CafeService service) { this.cafeService = service;}
 
+    /**
+     * Take an <code>Order</code> and make some Coffee.
+     * <p>
+     *     Uses the collaborating <code>CafeService</code> to process the order and obtain prices for each
+     *  line item/<code>OrderItem</code> in the Order.
+     * </p>
+     * @param order         Order containing some OrderItems
+     * @return              BigDecimal      aggregate price.
+     */
     public BigDecimal takeOrder( Order order )
     {
         BigDecimal totalPrice = BigDecimal.ZERO;

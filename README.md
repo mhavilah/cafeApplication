@@ -18,6 +18,8 @@ Download Maven 3.6.0 and Java 1.8.x JDK to compile the project
 
 On OSX
 ```bash
+$ brew update
+
 $ brew install maven
 
 $ brew cask install java
@@ -168,8 +170,8 @@ Possible beverages: Latte:Mocha:Cappuccino:
 Then pass in the number of cups/beverage type:
 
 ```bash
-$ java -jar target/CafeApplication-1.0-SNAPSHOT.jar  
-1 Latte 1 cups of Latte costs: 4.000000
+$ java -jar target/CafeApplication-1.0-SNAPSHOT.jar  1 Latte 
+1 cups of Latte costs: 4.000000
 ```
 
 ```bash
@@ -177,3 +179,43 @@ $ java -jar target/CafeApplication-1.0-SNAPSHOT.jar 3 Cappuccino
 3 cups of Cappuccino costs: 12.000000
 ```
 
+## Mock Testing Notes
+
+In this example the key service being mocked is in CafeService:
+
+```java
+public interface CafeService {
+   BigDecimal makeBeverage(int numberOfCups, Enum<BeverageType> beverageType);
+}
+```
+
+This is implemented in CafeServiceImpl and used by the Waiter client's
+takeOrder method.
+
+```java
+ public BigDecimal takeOrder( Order order ) { 
+     ...
+     for( OrderItem orderItem : order.getItems()) {
+            BigDecimal itemPrice = cafeService.makeBeverage(orderItem.numberOfCups, orderItem.beverageType);
+
+     }
+     ...
+ }
+```
+
+By using mocks we can test the interaction between the Waiter and the
+CafeService for several different scenarios.
+
+For example
+- valid "sunny day" scenarios
+  - positive amounts of known beverage types
+  
+- invalid parameter scenarios
+  - negative cup amounts
+  - unknown beverage types (passed to the CLI)
+  - non-numeric cup amounts (passed to the CLI)
+  
+- business logic exception scenarios
+  - out of inventory scenario
+  
+In the last instance, as the CafeServiceImpl 
