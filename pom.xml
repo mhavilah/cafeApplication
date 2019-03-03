@@ -73,65 +73,49 @@
       - https://www.petrikainulainen.net/programming/testing/junit-5-tutorial-running-unit-tests-with-maven/
       -->
     <build>
-    <plugins>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.8.0</version>
-        <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-        </configuration>
-    </plugin>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.1</version>
-    </plugin>
-    <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>3.1.1</version>
-        <!-- Following configs are from Maven archive plugin since jar plugin 3.0.x -->
-        <configuration>
-            <archive>
-                <addMavenDescriptor>false</addMavenDescriptor>
-                <compress>true</compress>
-                <!-- manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile -->
-                <manifest>
-                    <addClasspath>true</addClasspath>
-                    <!-- addDefaultEntries>true</addDefaultEntries -->
-                    <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                    <!-- addBuildEnvironmentEntries>true</addBuildEnvironmentEntries -->
-                    <mainClass>com.thesolutionlab.CafeApp</mainClass>
-                    <!-- manifestVersion>1.0</manifestVersion -->
-                </manifest>
-                <manifestEntries>
-                    <mode>development</mode>
-                    <url>${project.url}</url>
-                    <author>Matt Havilah</author>
-                    <email>mhavilah@gmail.com</email>
-                </manifestEntries>
-            </archive>
-        </configuration>
-    </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>1.4</version>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>shade</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <finalName>${project.artifactId}-${project.version}</finalName>
-            </configuration>
-        </plugin>
-    </plugins>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.1</version>
+                <!-- Following configs are from Maven archive plugin since jar plugin 3.0.x -->
+                <configuration>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <compress>true</compress>
+                        <!-- manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile -->
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <!-- addDefaultEntries>true</addDefaultEntries -->
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <!-- addBuildEnvironmentEntries>true</addBuildEnvironmentEntries -->
+                            <mainClass>com.thesolutionlab.CafeApp</mainClass>
+                            <!-- manifestVersion>1.0</manifestVersion -->
+                        </manifest>
+                        <manifestEntries>
+                            <mode>development</mode>
+                            <url>${project.url}</url>
+                            <author>Matt Havilah</author>
+                            <email>mhavilah@gmail.com</email>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
-    
+
 </project>
