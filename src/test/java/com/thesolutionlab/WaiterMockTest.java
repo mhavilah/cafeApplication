@@ -123,4 +123,5 @@ public class WaiterMockTest {
         assertThrows( UnavailableProductException.class,
             () -> { BigDecimal price = waiter.takeOrder(order); });
     }
+
 }

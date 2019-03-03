@@ -32,9 +32,10 @@ Clone the Git repository
 ```bash
 $ git clone https://github.com/mhavilah/cafeApplication.git
 ```
-
-
 Then, invoking Maven from the project folder (containing the pom.xml):
+
+<details>
+<summary>Maven build session</summary>
 
 ```bash
  $ cd cafeApplication
@@ -150,7 +151,7 @@ CLI Output:
 [INFO] Finished at: 2019-03-01T16:55:07+11:00
 [INFO] ------------------------------------------------------------------------
 ```
-
+</details>
 The build will create an application JAR under:
 target/CafeApplication-1.0-SNAPSHOT.jar
 
@@ -204,7 +205,9 @@ takeOrder method.
 ```
 
 By using mocks we can test the interaction between the Waiter and the
-CafeService for several different scenarios.
+CafeService for several different scenarios. 
+
+### Test Scenarios
 
 For example
 - valid "sunny day" scenarios
@@ -218,4 +221,116 @@ For example
 - business logic exception scenarios
   - out of inventory scenario
   
-In the last instance, as the CafeServiceImpl 
+In the last instance, the Mock should throw an
+UnavailableProductException, similar to the CafeServiceImpl production 
+version.
+
+Similarly, the negative cup scenario triggers an
+**IllegalArgumentException** from the Waiter order validation logic. For
+this scenario a mock is not needed as the validation is performed in the
+client itself.
+
+### Mocking with Answer APIs
+
+The Mockito Answer API supports a "smart stub" implementation whereby
+the mock can dynamically alter the response/answer value - for example
+based on the argument values passed in the request method.
+
+This is useful when the response value must return an ID from the
+request objects or it should simulate "simple" business rules or
+validation.
+
+In the example above, the CafeService can throw an
+UnavailableProductException if its current inventory state is depleted
+and the order cannot be fulfilled.
+
+Rather than maintaining state in the Mock, we simply place a cap on the
+maximum order size to be 10 cups. 
+
+The logic is subtlely different but
+allow us to exercise the error handling logic in the Waiter client:
+
+
+```java
+public class WaiterMockTest {
+...
+ @Test
+    public void canMockViaAnAnswer()
+    {
+        ...
+    
+        Mockito.when( cafeService.makeBeverage(Mockito.anyInt(), 
+                            Mockito.any(BeverageType.class)))
+            .then( 
+                (invocation) -> {
+                int cups = invocation.getArgument(0);
+                BeverageType type = invocation.getArgument(1);
+
+                return new BigDecimal( ANOTHER_UNIT_PRICE * cups );
+            } );
+```
+
+The Mockito logic above is saying:
+
+- when the makeBeverage service is invoked
+  - with *any* number of cups and *any* beverage type
+-  then return a mock price based on those arguments' values
+
+The Answer API here provides an Invocation object to hold the argments
+passed to the mock service.
+
+We use a simple Java 8 lambda function to take the invocation value,
+unpack its embedded arguments and return a response value.
+
+Mockito's Answer API takes care of the typecasting etc to return the
+appropriate response type. (Actually builds an Answer &lt;BigDecimal
+&gt;)
+
+### Mixing Request Argment Matchers
+
+When working with **Objects** (rather than primitives like int) the
+Mockito Matchers othen require you to use the **Any** wildcard.
+
+You generally, cannot mix the matcher for one argument that is of a
+specific value with a matcher for another argument that is *Any* 
+**Object** value.
+
+In the example above we could not have setup a *when* expectation with a
+cup amount specifically equal to, say, 5 cups and a wildcard Beverage
+matcher:
+
+```java
+// Mixing matchers is generally not allowed
+ Mockito.when( cafeService.makeBeverage(
+                    Mockito.eq(5), 
+                    Mockito.any(BeverageType.class)))
+            .then()
+            ....
+````
+
+#### Note
+```
+Enums are an exception to this rule and the above block of code is actually valid.
+If BeveageType was a POJO Model class, then the above would be strictly true
+```
+
+
+
+### Smart stubs - but how smart
+
+The above discussion raises the question - how "smart" do you make the
+Mock ?
+
+Mocks are supposed to be quick to write, and should really be checking
+the interaction *behaviour* between a client and its collaborator.
+
+By contract, true smart stub Test Doubles (eg, simulators) have more
+complicated logic and routinely inspect the values of the arguments for
+use in their response generation/calculations.
+
+
+Care should be taken to verify that the Mock behaviour resembles that
+described/expected in the interface/API. Excessive use of the Answer API
+with dynamic response generation may result in undue maintenance costs
+for tests.
+

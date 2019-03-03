@@ -27,12 +27,19 @@ public class Waiter {
      * </p>
      * @param order         Order containing some OrderItems
      * @return              BigDecimal      aggregate price.
+     * @throws              IllegalArgumentException    if an order item is malformed
      */
     public BigDecimal takeOrder( Order order )
     {
         BigDecimal totalPrice = BigDecimal.ZERO;
 
         for( OrderItem orderItem : order.getItems()) {
+
+            if (orderItem.numberOfCups < 0)
+            {
+                throw new IllegalArgumentException("Negative cups are not healthy");
+            }
+
             BigDecimal itemPrice = cafeService.makeBeverage(orderItem.numberOfCups, orderItem.beverageType);
 
             totalPrice = totalPrice.add(itemPrice);
