@@ -324,7 +324,7 @@ Mock ?
 Mocks are supposed to be quick to write, and should really be checking
 the interaction *behaviour* between a client and its collaborator.
 
-By contract, true smart stub Test Doubles (eg, simulators) have more
+By contrast, true smart stub Test Doubles (eg, simulators) have more
 complicated logic and routinely inspect the values of the arguments for
 use in their response generation/calculations.
 
