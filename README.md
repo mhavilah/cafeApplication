@@ -7,8 +7,11 @@
  
 This repository demonstrates the basics of Mocking a Service in Java.
 
-
-
+## Presentation
+<a href="docs/viewer.html">
+  <img src="docs/MockTesting-cover.jpg" width="188" height="125" alt="MockTesting"/>
+  <p>Mock Testing [PDF]</p>
+</a>
 
 ## How to build with Maven
 
