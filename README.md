@@ -8,7 +8,7 @@
 This repository demonstrates the basics of Mocking a Service in Java.
 
 ## Presentation
-<a href="docs/viewer.html">
+<a href="https://mhavilah.github.io/cafeApplication/" style="font-style:normal;font-weight:bold">
   <img src="docs/MockTesting-cover.jpg" width="188" height="125" alt="MockTesting"/>
   <p>Mock Testing [PDF]</p>
 </a>
